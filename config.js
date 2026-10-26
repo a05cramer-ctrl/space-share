@@ -1,0 +1,1 @@
+window.SHARE_CFG={NAME:"SPACE SHARE",TICKER:"SHARE",CA:"",CHAIN:"solana",PAD:"pumpfun",X:"",BUY:"",CHART:"",VAULT:"",SPCX:"SPCXxcqXj6e5dJDVNovHN8744zkbhM2bYudU45BimGb"};

@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SPACE SHARE ($SHARE): the memecoin that owns SpaceX</title>
+<meta name="description" content="SPACE SHARE ($SHARE) on pump.fun. The rule: every hour at :00 UTC, creator fees are swapped into SPCX, tokenized SpaceX stock on Solana. Never sold.">
+<meta name="theme-color" content="#050505">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SPACE SHARE ($SHARE)">
+<meta property="og:description" content="The memecoin that owns SpaceX. Creator fees buy SPCX every hour. Never sold.">
+<meta property="og:image" content="og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SPACE SHARE ($SHARE)">
+<meta name="twitter:description" content="The memecoin that owns SpaceX. Creator fees buy SPCX every hour. Never sold.">
+<meta name="twitter:image" content="og.jpg">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="stylesheet" href="styles.css">
+<script src="config.js"></script>
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="top" id="topbar">
+  <div class="tape" aria-hidden="true"><div class="tape-run" id="tape"></div></div>
+  <div class="nav">
+    <a class="brand" href="#top" aria-label="SPACE SHARE home">
+      <img src="logo.png" width="30" height="30" alt="">
+      <span class="brand-name px">SPACE SHARE</span>
+      <span class="brand-tick">$SHARE</span>
+    </a>
+    <nav class="links" aria-label="Sections">
+      <a href="#rate">Rate</a>
+      <a href="#rules">Rules</a>
+      <a href="#vault" id="navVault" hidden>Vault</a>
+      <a href="#mission">Launches</a>
+    </nav>
+    <div class="nav-r">
+      <span class="snap" id="snapTag" hidden></span>
+      <button class="snd" id="sndBtn" type="button" aria-pressed="false" aria-label="Toggle sound">
+        <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" shape-rendering="crispEdges"><path fill="currentColor" d="M2 6h3l4-3v10l-4-3H2z"/><g class="w" fill="currentColor"><rect x="11" y="5" width="1" height="6"/><rect x="13" y="3" width="1" height="10"/></g><g class="x" fill="currentColor"><rect x="11" y="6" width="1" height="1"/><rect x="12" y="7" width="1" height="2"/><rect x="13" y="6" width="1" height="1"/><rect x="11" y="9" width="1" height="1"/><rect x="13" y="9" width="1" height="1"/></g></svg>
+        <span id="sndLbl">SOUND OFF</span>
+      </button>
+      <a class="btn btn-buy btn-sm" id="navBuy" hidden target="_blank" rel="noopener">BUY $SHARE</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" id="top" aria-label="SPACE SHARE">
+    <div class="stage" id="stage"><canvas id="scene" aria-hidden="true"></canvas></div>
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="pip"></span>$SHARE · SOLANA · PUMP.FUN</p>
+      <h1 class="px">THE MEMECOIN THAT OWNS <em>SPACEX.</em></h1>
+      <p class="lede">The rule: every hour at :00&nbsp;UTC, $SHARE creator fees are swapped into <b>SPCX</b>, tokenized SpaceX stock on Solana. It is never sold.</p>
+      <div class="ctas">
+        <a class="btn btn-buy" id="heroBuy" hidden target="_blank" rel="noopener">BUY $SHARE</a>
+        <button class="btn btn-ca" id="heroCa" type="button" hidden></button>
+        <a class="btn btn-ghost" id="heroRules" href="#rules">READ THE RULES</a>
+        <a class="btn btn-ghost" href="#rate">SPCX LIVE ↓</a>
+      </div>
+    </div>
+    <p class="liftoff px" id="liftoff" hidden role="status"></p>
+    <p class="ctag" id="ctag"><span class="dot" id="cDot"></span><span class="ctag-k">SPCX · 1H CANDLES</span><span class="ctag-v"><span id="cNote">loading</span><span class="ctag-pool" id="cPool"></span></span></p>
+    <div class="tip" id="tip" hidden></div>
+    <div class="hud">
+      <div class="tile t-price">
+        <p class="t-k"><span class="dot" id="pDot"></span>SPCX · SPACEX STOCK</p>
+        <p class="t-v px2"><span id="hPrice" class="sk" style="--w:7ch"></span></p>
+        <p class="t-s"><span id="hCh" class="sk" style="--w:6ch"></span> <span class="mute">24h</span> <span class="mute" id="hQ"></span></p>
+      </div>
+      <div class="tile t-buy">
+        <canvas class="fuel-ico" id="fuelSm" aria-hidden="true"></canvas>
+        <div>
+          <p class="t-k">NEXT HOURLY BUY</p>
+          <p class="t-v px2" id="hBuy">--:--</p>
+          <p class="t-s mute" id="hBuyAt">at :00 UTC</p>
+        </div>
+      </div>
+      <div class="tile t-launch">
+        <p class="t-k"><span class="dot" id="lDot"></span>NEXT SPACEX LAUNCH</p>
+        <p class="t-v px2"><span id="hT" class="sk" style="--w:10ch"></span></p>
+        <p class="t-s"><span id="hMis" class="sk" style="--w:12ch"></span> <span class="chip" id="hSt" hidden></span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="rate" aria-labelledby="rateH">
+    <div class="sec-h"><span class="px">01</span><span class="px" id="rateH">THE RATE</span><i></i><span class="src"><span class="dot" id="qDot"></span>JUPITER QUOTE</span></div>
+    <div class="rate">
+      <div class="rate-big">
+        <p class="px big"><span id="rSol">1</span> SOL BUYS<br><em id="rOut" class="sk" style="--w:6ch"></em> SPCX<br>RIGHT NOW.</p>
+        <p class="rate-meta" id="rMeta">Asking Jupiter for a SOL → SPCX route…</p>
+      </div>
+      <div class="calc">
+        <label class="calc-l" for="calcIn">If the vault collects this much in fees</label>
+        <div class="calc-in"><input id="calcIn" type="text" inputmode="decimal" value="10" autocomplete="off" spellcheck="false" aria-describedby="cMeta"><span class="px">SOL</span></div>
+        <div class="chips" role="group" aria-label="Quick amounts">
+          <button type="button" data-v="1">1</button><button type="button" data-v="10">10</button><button type="button" data-v="50">50</button><button type="button" data-v="250">250</button>
+        </div>
+        <div class="calc-out">
+          <div><p class="k">IT BUYS</p><p class="v"><b id="cOut" class="sk" style="--w:6ch"></b> <span>SPCX</span></p></div>
+          <div><p class="k">WORTH</p><p class="v"><b id="cUsd" class="sk" style="--w:5ch"></b></p></div>
+        </div>
+        <p class="calc-meta" id="cMeta">Live Jupiter quote · 1% slippage</p>
+      </div>
+    </div>
+    <dl class="stats">
+      <div><dt>SPCX price</dt><dd id="sPrice" class="sk" style="--w:7ch"></dd></div>
+      <div><dt>24h change</dt><dd id="sCh" class="sk" style="--w:6ch"></dd></div>
+      <div><dt>Liquidity</dt><dd id="sLiq" class="sk" style="--w:6ch"></dd></div>
+      <div><dt>Holders</dt><dd id="sHold" class="sk" style="--w:7ch"></dd></div>
+      <div><dt>Market cap</dt><dd id="sMcap" class="sk" style="--w:6ch"></dd></div>
+      <div><dt>Top pool</dt><dd id="sPool" class="sk" style="--w:11ch"></dd></div>
+    </dl>
+  </section>
+
+  <section class="sec" id="rules" aria-labelledby="rulesH">
+    <div class="sec-h"><span class="px">02</span><span class="px">THE RULES</span><i></i><span class="src">PUBLISHED</span></div>
+    <h2 class="px h2" id="rulesH">FOUR RULES. <span>NO EXCEPTIONS.</span></h2>
+    <div class="rules-wrap">
+      <ol class="rules">
+        <li><span class="n px">01</span><div><h3>Fees go to the vault</h3><p>Every $SHARE trade on pump.fun pays a creator fee. All of it goes to one public vault wallet.</p></div></li>
+        <li><span class="n px">02</span><div><h3>Every hour, at :00 UTC</h3><p>The vault swaps that hour's fees into SPCX on Jupiter. One buy per hour, on the hour.</p></div></li>
+        <li><span class="n px">03</span><div><h3>The SPCX is never sold</h3><p>What goes in stays in. There is no sell, no rebalance, no exit.</p></div></li>
+        <li><span class="n px">04</span><div><h3>Anyone can watch</h3><p>The vault is a normal Solana wallet. Every buy is a public transaction you can check yourself.</p></div></li>
+      </ol>
+      <div class="rules-side">
+        <div class="fuel">
+          <canvas id="fuelBig" aria-hidden="true"></canvas>
+          <div>
+            <p class="k">NEXT HOURLY BUY WINDOW</p>
+            <p class="v px2" id="fuelT">--:--</p>
+            <p class="s" id="fuelAt">at :00 UTC</p>
+            <p class="s mute">The gauge fills with the clock. It empties at :00.</p>
+          </div>
+        </div>
+        <aside class="note">
+          <p class="k">WHAT SPCX IS</p>
+          <p>SPCX is Backpack's tokenized SpaceX stock on Solana. Its issuer keeps freeze and mint authority, like other tokenized stocks.</p>
+          <button class="mint" type="button" id="spcxMint"></button>
+          <p class="s mute">Token-2022 · 6 decimals · trades on Jupiter</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="vault" hidden aria-labelledby="vaultH">
+    <div class="sec-h"><span class="px">03</span><span class="px" id="vaultH">THE VAULT</span><i></i><span class="src"><span class="dot" id="vDot"></span>ON-CHAIN</span></div>
+    <div class="vault-top">
+      <div class="vt-main">
+        <p class="k">THE VAULT HOLDS</p>
+        <p class="px big"><em id="vSpcx" class="sk" style="--w:6ch"></em> SPCX</p>
+        <p class="v-usd" id="vUsd"></p>
+      </div>
+      <div class="vt-side">
+        <div><p class="k">SOL IN THE VAULT</p><p class="v" id="vSol">-</p></div>
+        <div><p class="k">ADDRESS</p><button class="mint" type="button" id="vAddr"></button> <a class="ext" id="vLink" target="_blank" rel="noopener">Solscan ↗</a></div>
+      </div>
+    </div>
+    <div class="plot" id="plot">
+      <canvas id="plotC" aria-hidden="true"></canvas>
+      <p class="plot-empty" id="plotEmpty" hidden>No SPCX buys in the vault yet. The first hourly swap plants the first candle here.</p>
+    </div>
+    <p class="plot-k">Each candle is one SPCX buy found in the vault's recent transactions, height by size. New buys arrive by rocket.</p>
+    <ul class="txs" id="vTx"></ul>
+  </section>
+
+  <section class="sec" id="mission" aria-labelledby="mcH">
+    <div class="sec-h"><span class="px">04</span><span class="px" id="mcH">MISSION CONTROL</span><i></i><span class="src"><span class="dot" id="mDot"></span>LAUNCH LIBRARY 2</span></div>
+    <div class="mc">
+      <div class="mc-main">
+        <p class="k">NEXT SPACEX LAUNCH</p>
+        <p class="mc-t px2" id="mcT"><span class="sk" style="--w:10ch"></span></p>
+        <h3 class="mc-name" id="mcName"><span class="sk" style="--w:16ch"></span></h3>
+        <p class="mc-rocket" id="mcRocket"></p>
+        <dl class="mc-dl">
+          <div><dt>NET (UTC)</dt><dd id="mcNet">-</dd></div>
+          <div><dt>Your time</dt><dd id="mcLocal">-</dd></div>
+          <div><dt>Status</dt><dd id="mcStatus">-</dd></div>
+          <div id="mcPadRow" hidden><dt>Pad</dt><dd id="mcPad"></dd></div>
+        </dl>
+        <p class="mc-note">Keep this page open at T-0 and the rocket on the Mars pad goes with it.</p>
+      </div>
+      <div class="mc-lists">
+        <div><p class="k">UP NEXT</p><ol class="ll" id="mcUp"><li class="sk-row"></li><li class="sk-row"></li><li class="sk-row"></li></ol></div>
+        <div><p class="k">LAST LAUNCHES</p><ol class="ll" id="mcPrev"><li class="sk-row"></li><li class="sk-row"></li><li class="sk-row"></li></ol></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-top">
+    <a class="brand" href="#top"><img src="logo.png" width="40" height="40" alt=""><span class="brand-name px">SPACE SHARE</span></a>
+    <div class="foot-links">
+      <button class="btn btn-ca" type="button" id="fCa" hidden></button>
+      <a class="btn btn-buy" id="fBuy" hidden target="_blank" rel="noopener">BUY</a>
+      <a class="btn btn-ghost" id="fChart" hidden target="_blank" rel="noopener">CHART</a>
+      <a class="btn btn-ghost" id="fX" hidden target="_blank" rel="noopener">X</a>
+    </div>
+  </div>
+  <p class="fine">SPACE SHARE ($SHARE) is a memecoin. It is not affiliated with SpaceX, Backpack, Jupiter or pump.fun. SPCX can go down as well as up. Nothing here is investment advice.</p>
+  <p class="fine">Data: Jupiter · GeckoTerminal · Launch Library 2 by The Space Devs · Helius</p>
+  <div class="foot-scene" id="footScene"><canvas id="footC" aria-hidden="true"></canvas></div>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
